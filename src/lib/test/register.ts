@@ -5,7 +5,8 @@ import PocketBase from "pocketbase"
 
 const pb = new PocketBase('http://127.0.0.1:8090');
 
-export const register = async ({ request }) => {
+export class Register {
+static register = async ({ request }) => {
     const formData = await request.formData();
     const data = Object.fromEntries([...formData]);
   
@@ -29,3 +30,5 @@ export const register = async ({ request }) => {
   
     throw redirect(303, '/login');
   };
+}
+

@@ -10,14 +10,23 @@ export async function load({}) {
         sort: '-created', 
         expand:"category" });
 
-    console.log(getAllRecipes)
+        const record = await pb.collection('users').getFullList({
+          sort: '-created',
+        })
+
+        const countJohnDoe = record.reduce((count, user) => {
+          return count + (user.name === "John Doe" ? 1 : 0);
+        }, 0);
+  
+        console.log(countJohnDoe)
+
 
     const results = getAllRecipes.map((result) => {
     const categoryData = result.expand?.category;
 
-    console.log(result)
+    
     // Log category data for each recipe
-    console.log("Category Data:", categoryData);
+    //console.log("Category Data:", categoryData);
         return {
           id: result.id,
           collectionId: result.collectionId,
@@ -28,6 +37,7 @@ export async function load({}) {
           likes: result.likes
         };
       });
+      //console.log(result.name)
 
     return {
         getAllRecipes: results

@@ -10,7 +10,7 @@ export const actions={
         const formData = await request.formData()
         const data = Object.fromEntries([...formData]);
 
-console.log
+console.log(request)
         const name = data.name
         const description = data.description
         const category = data.category
